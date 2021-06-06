@@ -129,7 +129,6 @@ class ImageGenerator:
 
         testData = testDataSet.values
         self.testImages2 = testData[:20]
-        print(self.testImages2)
         for test in self.testImages2:
             im = test.reshape((28, 28))
             plt.figure()
@@ -141,7 +140,7 @@ class ImageGenerator:
 
     def clear(self):
         self.drawing_area.delete("all")
-        self.image = Image.new("RGB", (200, 200), (255, 255, 255))
+        self.image = Image.new("RGB", (200, 200), (0,0,0))
         self.draw = ImageDraw.Draw(self.image)
 
     def b1down(self, event):
