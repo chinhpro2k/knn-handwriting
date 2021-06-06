@@ -56,7 +56,7 @@ testImages = testData[:20]
 
 class ImageGenerator:
 
-    def __init__(self, parent, posx, posy,testImages2, *kwargs):
+    def __init__(self, parent, posx, posy, testImages2, *kwargs):
         self.parent = parent
         self.posx = posx
         self.testImages2 = testImages2
@@ -76,13 +76,12 @@ class ImageGenerator:
         self.button1 = tk.Button(self.parent, text="Clear!", width=10, bg='white', command=self.clear)
         self.button1.place(x=(self.sizex / 7) + 80, y=self.sizey + 20)
         self.button2 = tk.Button(self.parent, text="Convert Excel!", width=10, bg='white', command=self.convertExcel)
-        self.button2.place(x=(self.sizex / 7) , y=self.sizey + 45)
+        self.button2.place(x=(self.sizex / 7), y=self.sizey + 45)
         self.button3 = tk.Button(self.parent, text="Screen!", width=10, bg='white', command=self.screen)
         self.button3.place(x=(self.sizex / 7) + 80, y=self.sizey + 45)
 
         self.image = Image.new("RGB", (200, 200), (0, 0, 0))
         self.draw = ImageDraw.Draw(self.image)
-
 
     def save(self):
         filename = "temp.jpg"
@@ -106,7 +105,7 @@ class ImageGenerator:
             outFile.readline()
             outFile.truncate(outFile.tell())
 
-        # for img in imageList:
+            # for img in imageList:
             image = cv.cvtColor(img_resized, cv.COLOR_BGR2GRAY)
             imageData2D = np.array(image)
             #    print(imageData2D.shape)
@@ -118,11 +117,6 @@ class ImageGenerator:
             with open('pixel.csv', 'a', newline='\n') as outFile:
                 writer = csv.writer(outFile)
                 writer.writerow(imageData1D)
-
-
-
-
-
 
     def screen(self):
         testDataSet = pd.read_csv("pixel.csv")
@@ -137,10 +131,9 @@ class ImageGenerator:
             label = knn(xTrain, yTrain, test)
             print("Label:", label)
 
-
     def clear(self):
         self.drawing_area.delete("all")
-        self.image = Image.new("RGB", (200, 200), (0,0,0))
+        self.image = Image.new("RGB", (200, 200), (0, 0, 0))
         self.draw = ImageDraw.Draw(self.image)
 
     def b1down(self, event):
