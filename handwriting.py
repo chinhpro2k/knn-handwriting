@@ -55,9 +55,11 @@ testImages = testData[:20]
 
 
 class ImageGenerator:
-    def __init__(self, parent, posx, posy, *kwargs):
+
+    def __init__(self, parent, posx, posy,testImages2, *kwargs):
         self.parent = parent
         self.posx = posx
+        self.testImages2 = testImages2
         self.posy = posy
         self.sizex = 200
         self.sizey = 200
@@ -80,6 +82,7 @@ class ImageGenerator:
 
         self.image = Image.new("RGB", (200, 200), (0, 0, 0))
         self.draw = ImageDraw.Draw(self.image)
+
 
     def save(self):
         filename = "temp.jpg"
@@ -118,8 +121,16 @@ class ImageGenerator:
 
 
 
+
+
+
     def screen(self):
-        for test in testImages:
+        testDataSet = pd.read_csv("pixel.csv")
+
+        testData = testDataSet.values
+        self.testImages2 = testData[:20]
+        print(self.testImages2)
+        for test in self.testImages2:
             im = test.reshape((28, 28))
             plt.figure()
             plt.imshow(im, cmap='gray')
@@ -155,7 +166,7 @@ if __name__ == "__main__":
     root = tk.Tk()
     root.wm_geometry("%dx%d+%d+%d" % (400, 400, 10, 10))
     root.config(bg='white')
-    ImageGenerator(root, 10, 10)
+    ImageGenerator(root, 10, 10, testImages)
     root.mainloop()
 
 # for test in testImages:
